@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PMI Portfolio & CV Platform | Hojas de Vida Dinámicas</title>
+  <title>Hojas de Vida | PMI CV Platform</title>
   
-  <!-- Meta Tags Open Graph Dinámicos -->
-  <meta property="og:title" content="Plataforma de Hojas de Vida Dinámicas (Estándar PMI)" id="og-title" />
-  <meta property="og:description" content="Portafolio ejecutivo de dirección de proyectos, KPIs, certificaciones y competencias bajo estándares PMI." id="og-desc" />
-  <meta property="og:type" content="profile" />
-  <meta property="og:url" content="" id="og-url" />
+  <meta property="og:title" content="Plataforma de Hojas de Vida (Estándar PMI)" />
+  <meta property="og:description" content="Portafolio ejecutivo de dirección de proyectos, KPIs, certificaciones y competencias bajo estándares PMI." />
+  <meta property="og:type" content="website" />
 
   <!-- Google Fonts (5 opciones seleccionables desde Apariencia) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -158,13 +156,6 @@
       font-weight: 600;
     }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-    }
-
     .mode-pill {
       display: inline-flex;
       align-items: center;
@@ -174,8 +165,6 @@
       border-radius: 999px;
       background: var(--bg-muted);
       border: 1px solid var(--border-color);
-      cursor: pointer;
-      user-select: none;
     }
 
     .mode-dot {
@@ -185,7 +174,7 @@
       background: #10b981;
     }
 
-    .mode-dot.demo {
+    .mode-dot.local {
       background: var(--accent);
     }
 
@@ -260,7 +249,7 @@
     .badge-hybrid { background: #fef3c7; color: #92400e; border-color: #fde68a; }
 
     /* ==========================================================================
-       5. CONTENEDOR PRINCIPAL Y DIRECTORIO (#/)
+       5. CONTENEDOR PRINCIPAL Y PANEL (#/)
        ========================================================================== */
     .main-container {
       width: 100%;
@@ -349,7 +338,7 @@
     }
 
     /* ==========================================================================
-       6. HOJA DE VIDA PÚBLICA (#/cv/{slug})
+       6. HOJA DE VIDA (#/cv/{slug})
        ========================================================================== */
     /* Barra de navegación rápida de secciones (Scroll Spy) */
     .cv-subnav {
@@ -884,7 +873,7 @@
     }
 
     /* ==========================================================================
-       7. PANEL DE EDICIÓN (#/editor) CON VISTA PREVIA EN VIVO
+       7. EDITOR CON VISTA PREVIA
        ========================================================================== */
     .editor-shell {
       display: grid;
@@ -904,4 +893,2223 @@
 
     @media (max-width: 768px) {
       .editor-shell {
-        grid-
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .editor-menu {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      position: sticky;
+      top: 70px;
+    }
+
+    .editor-tab-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.6rem 0.8rem;
+      border-radius: var(--radius);
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+
+    .editor-tab-btn:hover, .editor-tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .editor-workspace {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .editor-live-preview {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      padding: 1rem;
+      position: sticky;
+      top: 70px;
+      max-height: calc(100vh - 90px);
+      overflow-y: auto;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .form-group label {
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .form-control {
+      padding: 0.55rem 0.75rem;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-color);
+      background: var(--bg-body);
+      color: var(--text-main);
+    }
+
+    .crud-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-muted);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      margin-bottom: 0.6rem;
+    }
+
+    /* Toast y modal */
+    .toast-container {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .toast {
+      background: var(--secondary);
+      color: #ffffff;
+      padding: 0.8rem 1.2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      border-left: 4px solid var(--accent);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.6);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      max-width: 540px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .modal-body { font-size: 0.9rem; }
+    .modal-body p { margin-bottom: 0.75rem; }
+    .modal-body ul, .modal-body ol { margin: 0 0 0.75rem 1.3rem; }
+    .modal-body code {
+      background: var(--bg-muted);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 0.05rem 0.35rem;
+      font-size: 0.85em;
+      word-break: break-all;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .share-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    /* ==========================================================================
+       8. PANEL PRINCIPAL, AVISOS Y CAMPOS DEL EDITOR
+       ========================================================================== */
+    .directory-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .notice {
+      padding: 0.85rem 1rem;
+      background: rgba(217, 119, 6, 0.1);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      font-size: 0.86rem;
+      margin-bottom: 1rem;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+    }
+
+    .avatar-fallback {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.3rem;
+    }
+
+    .hero-avatar.avatar-fallback { font-size: 2.6rem; }
+
+    .icon-img {
+      object-fit: contain;
+      vertical-align: middle;
+    }
+
+    .editor-topbar {
+      position: sticky;
+      top: 57px;
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 0.7rem 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .editor-topbar-title, .editor-topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .editor-menu, .editor-live-preview { top: 135px; }
+    .editor-live-preview { max-height: calc(100vh - 150px); }
+
+    @media (max-width: 768px) {
+      .editor-topbar, .editor-menu, .editor-live-preview { position: static; }
+      .editor-live-preview { max-height: none; }
+    }
+
+    /* La vista previa del editor es angosta: siempre se muestra en una columna */
+    #editor-preview .cv-layout { grid-template-columns: 1fr; }
+
+    .form-grid .wide { grid-column: 1 / -1; }
+
+    .hint {
+      font-size: 0.76rem;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .img-field {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .img-field .form-control {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .item-form {
+      padding: 1rem;
+      border: 1px solid var(--primary);
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      margin-bottom: 0.6rem;
+    }
+
+    /* ==========================================================================
+       9. IMPRESIÓN Y EXPORTACIÓN PDF
+       La hoja de vida va dentro de una tabla (.print-frame) cuyo encabezado y pie
+       vacíos se repiten en cada página y hacen de margen. Así @page puede tener
+       margen 0, que es lo que evita que el navegador imprima su propio encabezado
+       y pie (fecha, título, nombre/ruta del archivo y número de página).
+       ========================================================================== */
+    .print-only-header { display: none; }
+
+    .print-frame {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .print-frame td { padding: 0; }
+
+    @media screen {
+      .print-frame,
+      .print-frame > tbody,
+      .print-frame > tbody > tr,
+      .print-frame > tbody > tr > td { display: block; }
+
+      .print-frame > thead,
+      .print-frame > tfoot { display: none; }
+    }
+
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      /* Colores claros al imprimir aunque la hoja de vida use el tema oscuro */
+      html[data-theme] {
+        --bg-body: #ffffff;
+        --bg-card: #ffffff;
+        --bg-muted: #f8fafc;
+        --text-main: #0f172a;
+        --text-muted: #475569;
+        --border-color: #cbd5e1;
+        font-size: 10pt;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .top-navbar,
+      .cv-subnav,
+      .hero-actions,
+      .no-print,
+      .video-container,
+      .toast-container,
+      .modal-backdrop,
+      .chevron-icon {
+        display: none !important;
+      }
+
+      .print-video-fallback { display: block; }
+
+      .print-frame { table-layout: fixed; }
+      .print-frame > tbody > tr > td { padding: 0 14mm; }
+      .print-space { height: 12mm; }
+
+      .print-only-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        border-bottom: 2px solid var(--primary);
+        padding-bottom: 6px;
+        margin-bottom: 12px;
+        font-size: 8.5pt;
+        color: #334155;
+      }
+
+      .main-container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      .cv-layout {
+        grid-template-columns: 230px 1fr;
+        gap: 14px;
+      }
+
+      .cv-card, details.cv-section, .timeline-item, .pmi-project-card, .cert-card, .annexes-box {
+        box-shadow: none;
+      }
+
+      /* Las secciones largas pueden continuar en la página siguiente; sus tarjetas no se parten */
+      .hero-profile, .timeline-item, .pmi-project-card, .cert-card, .annexes-box, .skill-item, .talent-triangle-box {
+        break-inside: avoid;
+      }
+
+      summary.cv-section-header { break-after: avoid; }
+
+      .ally-item {
+        filter: none;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRA SUPERIOR -->
+  <header class="top-navbar" role="banner">
+    <a href="#/" class="brand-logo" aria-label="Ir al panel principal">
+      <i data-lucide="briefcase"></i>
+      <span>PMI CV Platform</span>
+      <span class="brand-badge">PMBOK® 7</span>
+    </a>
+    <span class="mode-pill" id="mode-pill">
+      <span id="mode-dot" class="mode-dot local"></span>
+      <span id="mode-label">Conectando…</span>
+    </span>
+  </header>
+
+  <!-- CONTENEDOR DE VISTAS (ruteo por hash) -->
+  <main id="app-root" class="main-container" role="main"></main>
+
+  <!-- MODAL ÚNICO (compartir, exportar, confirmaciones) -->
+  <div id="modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="modal-title"></h3>
+        <button type="button" class="btn btn-secondary btn-sm" id="modal-close" aria-label="Cerrar ventana">✕</button>
+      </div>
+      <div id="modal-body" class="modal-body"></div>
+    </div>
+  </div>
+
+  <input type="file" id="import-file" accept=".json,application/json,text/plain" hidden />
+  <div id="toast-container" class="toast-container" aria-live="assertive"></div>
+
+  <script type="module">
+    /* ==========================================================================
+       1. CONFIGURACIÓN
+       Las hojas de vida se guardan en la tabla "hojas_de_vida" de Supabase
+       (créala una sola vez con el archivo supabase-tabla.sql). Si la tabla no
+       existe o no hay conexión, el programa guarda en este navegador.
+       ========================================================================== */
+    const SUPABASE_URL = "https://ifrgfvykmbcvuwilccip.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_6mXFM8sDWW7tlXOMK-XoCw_QXAg3I6g";
+    const TABLE = "hojas_de_vida";
+    const LOCAL_KEY = "cv_platform_hojas_v2";
+
+    /* ==========================================================================
+       2. ESTRUCTURA DE UNA HOJA DE VIDA
+       ========================================================================== */
+    const LIST_KEYS = ['experiences', 'projects', 'certifications', 'education', 'skills', 'languages', 'allies'];
+    const METHODOLOGIES = ['Predictiva', 'Ágil', 'Híbrida'];
+    const TALENT_TRIANGLE = ['Ways of Working', 'Power Skills', 'Business Acumen'];
+    const FONTS = ['Inter', 'Plus Jakarta Sans', 'Roboto Slab', 'Merriweather', 'Lora'];
+
+    const DEFAULT_SETTINGS = {
+      theme: "corporate",
+      primary_color: "#0f4c81",
+      secondary_color: "#1e293b",
+      accent_color: "#d97706",
+      border_style: "rounded",
+      font_family: "Inter",
+      layout: "sidebar",
+      show_qr: true,
+      show_print_date: true,
+      show_badges: true,
+      show_talent_triangle: true
+    };
+
+    const DEFAULT_SECTIONS = [
+      { section_key: "video", title: "Video de Presentación", icon: "video", is_visible: true, start_collapsed: false },
+      { section_key: "summary", title: "Perfil Profesional", icon: "user-check", is_visible: true, start_collapsed: false },
+      { section_key: "experience", title: "Experiencia en Dirección de Proyectos", icon: "briefcase", is_visible: true, start_collapsed: false },
+      { section_key: "projects", title: "Proyectos Destacados (Estándar PMI)", icon: "folder-kanban", is_visible: true, start_collapsed: false },
+      { section_key: "certifications", title: "Certificaciones, Insignias y PDUs", icon: "award", is_visible: true, start_collapsed: false },
+      { section_key: "education", title: "Educación y Formación", icon: "graduation-cap", is_visible: true, start_collapsed: false },
+      { section_key: "allies", title: "Empresas Aliadas y Clientes", icon: "building-2", is_visible: true, start_collapsed: false },
+      { section_key: "annexes", title: "Anexos y Respaldo Documental (QR)", icon: "qr-code", is_visible: true, start_collapsed: false }
+    ];
+
+    function newBlankCV() {
+      const cv = {
+        profile: {
+          slug: "", full_name: "", headline: "", summary: "", location: "", email: "", phone: "",
+          linkedin_url: "", website_url: "", avatar_url: "", video_url: "", drive_url: ""
+        },
+        settings: { ...DEFAULT_SETTINGS },
+        sections: structuredClone(DEFAULT_SECTIONS)
+      };
+      LIST_KEYS.forEach(key => { cv[key] = []; });
+      return cv;
+    }
+
+    const isObject = (v) => v !== null && typeof v === 'object' && !Array.isArray(v);
+
+    /* Completa lo que falte para que cualquier JSON (incluso antiguo o editado a mano) sea utilizable */
+    function normalizeCV(raw) {
+      const blank = newBlankCV();
+      const src = isObject(raw) ? raw : {};
+      const cv = {
+        profile: { ...blank.profile, ...(isObject(src.profile) ? src.profile : {}) },
+        settings: { ...blank.settings, ...(isObject(src.settings) ? src.settings : {}) },
+        sections: (Array.isArray(src.sections) ? src.sections : [])
+          .filter(s => isObject(s) && blank.sections.some(d => d.section_key === s.section_key))
+      };
+      blank.sections.forEach(def => {
+        if (!cv.sections.some(s => s.section_key === def.section_key)) cv.sections.push(def);
+      });
+      LIST_KEYS.forEach(key => { cv[key] = Array.isArray(src[key]) ? src[key].filter(isObject) : []; });
+      return cv;
+    }
+
+    /* Hoja de vida de ejemplo (se ofrece cuando el panel está vacío) */
+    const EXAMPLE_CV = normalizeCV({
+      profile: {
+        slug: "ejemplo",
+        full_name: "Valeria Mendoza Salazar, PMP®, PMI-ACP®",
+        headline: "Directora Senior de Proyectos TI & Transformación Ágil (PMO)",
+        summary: "Ingeniera de Sistemas y Directora de Proyectos certificada PMP® con más de 11 años liderando portafolios estratégicos de transformación digital en banca, fintech y energía en Latinoamérica. Especialista en gobierno de PMO, gestión de interesados ejecutivos, control de presupuestos CAPEX/OPEX superiores a USD $4.5M y entrega continua de valor mediante marcos Predictivos, Ágiles (Scrum/SAFe) e Híbridos alineados con la Guía del PMBOK® 7ª Edición.",
+        location: "Bogotá / Remoto LATAM",
+        email: "valeria.mendoza.pmp@ejemplo-pmi.org",
+        phone: "+57 310 555 8920",
+        linkedin_url: "https://www.linkedin.com/in/valeriamendozapmp",
+        website_url: "https://portafolio-pmi-valeria.org",
+        avatar_url: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80",
+        video_url: "",
+        drive_url: "https://drive.google.com/drive/folders/1EjemploCarpetaAnexosCertificadosPMI"
+      },
+      experiences: [
+        {
+          company: "Grupo Financiero Andino Holding",
+          company_logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=120&q=70",
+          role: "Head of IT PMO & Directora de Portafolio Digital",
+          start_date: "2022-03", end_date: "", is_current: true, methodology: "Híbrida",
+          achievements: [
+            "Estandarización del marco de gobierno de la PMO corporativa para 28 proyectos concurrentes, logrando un incremento del 34% en el índice de cumplimiento de cronograma (SPI = 1.04).",
+            "Gestión integral de riesgos, adquisiciones y contratos con 12 proveedores internacionales cloud, generando ahorros auditados de USD $480,000 anuales.",
+            "Implementación de tableros ejecutivos de Valor Ganado (EVM) y OKRs trimestrales para el Comité de Dirección."
+          ],
+          is_visible: true
+        },
+        {
+          company: "NovaPay Fintech Solutions",
+          company_logo: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=120&q=70",
+          role: "Senior Agile Project Manager",
+          start_date: "2019-01", end_date: "2022-02", is_current: false, methodology: "Ágil",
+          achievements: [
+            "Liderazgo de 4 células multidisciplinarias Scrum/Kanban (36 ingenieros) para el lanzamiento de la pasarela de pagos transfronteriza en 5 países.",
+            "Reducción del Time-to-Market en un 41% y disminución de incidentes críticos post-despliegue en un 62% mediante prácticas de Gestión de la Calidad y CI/CD."
+          ],
+          is_visible: true
+        },
+        {
+          company: "Consorcio Energético del Pacífico",
+          company_logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=120&q=70",
+          role: "Project Manager de Infraestructura y ERP",
+          start_date: "2016-06", end_date: "2018-12", is_current: false, methodology: "Predictiva",
+          achievements: [
+            "Dirección del proyecto de migración SAP S/4HANA con presupuesto de USD $1.8M, entregado 2 semanas antes de la línea base y con CPI de 1.03.",
+            "Coordinación de planes de Gestión del Cambio y Comunicaciones para más de 1,400 usuarios finales en 6 plantas operativas."
+          ],
+          is_visible: true
+        }
+      ],
+      projects: [
+        {
+          name: "Migración Core Bancario Cloud & Open Banking API",
+          client_name: "Banco Mercantil Regional", client_logo: "",
+          role: "Directora de Programa (Program Manager)", methodology: "Híbrida",
+          budget: 2450000, currency: "USD", team_size: 42, duration: "18 meses",
+          scope: "Modernización de arquitectura monolítica hacia microservicios en AWS, habilitando 35 APIs abiertas bajo normativa de seguridad financiera e integración con fintechs aliadas.",
+          deliverables: "Acta de Constitución, EDT/WBS, Plan de Gestión de Riesgos, Arquitectura Cloud certificada, 35 APIs productivas y Plan de Transferencia Operativa.",
+          kpis_results: "CPI: 1.02 (Ahorro de USD $49,000) | SPI: 1.00 | ROI del 168% en el primer año | Disponibilidad del sistema del 99.98%.",
+          knowledge_areas: ["Integración", "Alcance", "Cronograma", "Costos", "Riesgos", "Adquisiciones", "Interesados"],
+          is_visible: true
+        },
+        {
+          name: "Plataforma Analítica Predictiva de Fraude en Tiempo Real",
+          client_name: "Red Transaccional LATAM", client_logo: "",
+          role: "Senior Agile Project Manager", methodology: "Ágil",
+          budget: 890000, currency: "USD", team_size: 19, duration: "10 meses (20 Sprints)",
+          scope: "Diseño, entrenamiento y despliegue de motor de Machine Learning en tiempo real para evaluación de riesgo transaccional en canales móviles.",
+          deliverables: "Product Backlog priorizado por valor, MVP en el mes 4, Motor ML en producción, Tablero de monitoreo de falsos positivos.",
+          kpis_results: "Reducción de fraude en un 54% (ahorro directo de USD $1.9M/año) | Latencia inferior a 120ms | NPS de clientes internos: 92/100.",
+          knowledge_areas: ["Alcance", "Calidad", "Recursos", "Comunicaciones", "Riesgos"],
+          is_visible: true
+        }
+      ],
+      certifications: [
+        {
+          name: "Project Management Professional (PMP)®", issuer: "Project Management Institute (PMI)",
+          credential_code: "PMI-3849201", issue_date: "2019-05", expiry_date: "2028-05", pdus: 60,
+          talent_triangle: "Ways of Working",
+          verify_url: "https://www.pmi.org/certifications/certification-resources/registry",
+          badge_url: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=120&q=70",
+          is_visible: true
+        },
+        {
+          name: "PMI Agile Certified Practitioner (PMI-ACP)®", issuer: "Project Management Institute (PMI)",
+          credential_code: "ACP-992014", issue_date: "2021-08", expiry_date: "2027-08", pdus: 30,
+          talent_triangle: "Power Skills",
+          verify_url: "https://www.pmi.org/certifications/certification-resources/registry",
+          badge_url: "https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=120&q=70",
+          is_visible: true
+        }
+      ],
+      education: [
+        { institution: "Universidad de los Andes", degree: "Magíster en Gerencia Estratégica de Proyectos", field: "Dirección de Portafolios y Finanzas Corporativas", start_year: "2017", end_year: "2019", is_visible: true },
+        { institution: "Universidad Nacional de Colombia", degree: "Ingeniera de Sistemas y Computación", field: "Ingeniería de Software", start_year: "2010", end_year: "2015", is_visible: true }
+      ],
+      skills: [
+        { name: "Gestión de Valor Ganado (EVM) & Presupuestos", category: "Ways of Working (Técnicas)", level: 96, icon: "trending-up", is_visible: true },
+        { name: "Marcos Ágiles & Escalados (Scrum, Kanban, SAFe)", category: "Ways of Working (Técnicas)", level: 95, icon: "layers", is_visible: true },
+        { name: "Gestión de Riesgos y Adquisiciones (PMBOK)", category: "Ways of Working (Técnicas)", level: 92, icon: "shield-check", is_visible: true },
+        { name: "Liderazgo de Servicio y Negociación con Interesados", category: "Power Skills (Liderazgo)", level: 95, icon: "users", is_visible: true },
+        { name: "Comunicación Ejecutiva (C-Level) y Resolución de Conflictos", category: "Power Skills (Liderazgo)", level: 94, icon: "message-square", is_visible: true },
+        { name: "Evaluación Financiera de Proyectos (VPN, TIR, ROI)", category: "Business Acumen (Estrategia)", level: 89, icon: "pie-chart", is_visible: true },
+        { name: "Gobierno de PMO y Alineación Estratégica OKRs", category: "Business Acumen (Estrategia)", level: 93, icon: "compass", is_visible: true }
+      ],
+      languages: [
+        { name: "Español", level: "Nativo (C2)", percentage: 100, is_visible: true },
+        { name: "Inglés (Negocios / PMI)", level: "Avanzado (C1)", percentage: 90, is_visible: true },
+        { name: "Portugués", level: "Intermedio Profesional (B2)", percentage: 70, is_visible: true }
+      ],
+      allies: [
+        { name: "Banco Mercantil", logo_url: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&w=160&q=70", website_url: "https://ejemplo.org", is_visible: true },
+        { name: "NovaPay", logo_url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=160&q=70", website_url: "https://ejemplo.org", is_visible: true },
+        { name: "Consorcio Pacífico", logo_url: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=160&q=70", website_url: "https://ejemplo.org", is_visible: true }
+      ]
+    });
+
+    /* ==========================================================================
+       3. UTILIDADES
+       ========================================================================== */
+    const $ = (id) => document.getElementById(id);
+    const refreshIcons = () => window.lucide?.createIcons();
+    const visible = (list) => (list || []).filter(item => item.is_visible !== false);
+    const percent = (n) => Math.min(100, Math.max(0, Number(n) || 0));
+    const toArray = (v, sep = '\n') =>
+      (Array.isArray(v) ? v : String(v || '').split(sep)).map(s => String(s).trim()).filter(Boolean);
+
+    function escapeHTML(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    /* Enlaces externos: solo https:// */
+    function safeURL(url) {
+      const v = String(url || '').trim();
+      return /^https:\/\//i.test(v) ? v : '';
+    }
+
+    /* Imágenes elegidas con "Elegir archivo" en esta sesión: permiten verlas en la
+       vista previa aunque todavía no se hayan copiado a la carpeta de index.html */
+    const sessionImages = new Map();
+
+    const isWebURL = (path) => /^https:\/\//i.test(String(path || '').trim());
+
+    /* Imágenes y videos: enlace https:// o archivo ubicado en la carpeta de index.html */
+    function mediaSrc(path) {
+      const v = String(path || '').trim();
+      if (!v) return '';
+      if (sessionImages.has(v)) return sessionImages.get(v);
+      if (isWebURL(v)) return v;
+      if (/^[a-z][a-z0-9+.-]*:/i.test(v) || v.startsWith('//') || v.startsWith('\\')) return '';
+      return v;
+    }
+
+    /* Ícono: nombre de Lucide (ej. "briefcase") o archivo de imagen / enlace https:// */
+    function iconHTML(value, size = 16, style = '') {
+      const v = String(value || '').trim();
+      if (isWebURL(v) || /\.(png|jpe?g|gif|webp|svg)$/i.test(v)) {
+        const src = mediaSrc(v);
+        return src ? `<img src="${escapeHTML(src)}" alt="" class="icon-img" style="width:${size}px;height:${size}px;${style}" />` : '';
+      }
+      return `<i data-lucide="${escapeHTML(v || 'circle')}" style="width:${size}px;height:${size}px;${style}"></i>`;
+    }
+
+    function avatarHTML(profile, cssClass) {
+      const src = mediaSrc(profile.avatar_url);
+      if (src) return `<img src="${escapeHTML(src)}" alt="Foto de ${escapeHTML(profile.full_name)}" class="${cssClass}" />`;
+      const initials = String(profile.full_name || '?').split(/\s+/).slice(0, 2).map(w => w[0] || '').join('').toUpperCase();
+      return `<div class="${cssClass} avatar-fallback" aria-hidden="true">${escapeHTML(initials)}</div>`;
+    }
+
+    function slugify(text) {
+      return String(text || '')
+        .normalize('NFD').replace(/[̀-ͯ]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '')
+        .slice(0, 60);
+    }
+
+    function todayText() {
+      return new Date().toLocaleDateString('es-CO', { day: '2-digit', month: '2-digit', year: 'numeric' });
+    }
+
+    function showToast(message) {
+      const el = document.createElement('div');
+      el.className = 'toast';
+      el.textContent = message;
+      $('toast-container').appendChild(el);
+      setTimeout(() => el.remove(), 4500);
+    }
+
+    /* ---------- Modal único ---------- */
+    let modalOnClose = null;
+
+    function openModal(title, bodyHTML, onClose = null) {
+      closeModal();
+      $('modal-title').textContent = title;
+      $('modal-body').innerHTML = bodyHTML;
+      modalOnClose = onClose;
+      $('modal').classList.add('open');
+      refreshIcons();
+      return $('modal-body');
+    }
+
+    function closeModal() {
+      $('modal').classList.remove('open');
+      const callback = modalOnClose;
+      modalOnClose = null;
+      if (callback) callback();
+    }
+
+    function confirmModal(title, text, okLabel, danger = false) {
+      return new Promise(resolve => {
+        let answer = false;
+        const body = openModal(title, `
+          <p>${escapeHTML(text)}</p>
+          <div class="modal-actions">
+            <button type="button" class="btn btn-secondary" data-answer="no">Cancelar</button>
+            <button type="button" class="btn ${danger ? 'btn-danger' : 'btn-primary'}" data-answer="yes">${escapeHTML(okLabel)}</button>
+          </div>
+        `, () => resolve(answer));
+        body.querySelectorAll('[data-answer]').forEach(btn => btn.addEventListener('click', () => {
+          answer = btn.dataset.answer === 'yes';
+          closeModal();
+        }));
+      });
+    }
+
+    $('modal-close').addEventListener('click', closeModal);
+    $('modal').addEventListener('click', (e) => { if (e.target.id === 'modal') closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    /* ==========================================================================
+       4. ALMACENAMIENTO (Supabase, o este navegador si no hay conexión)
+       ========================================================================== */
+    const withTimeout = (promise, ms = 8000) => Promise.race([
+      promise,
+      new Promise((_, reject) => setTimeout(() => reject(new Error('Tiempo de espera agotado')), ms))
+    ]);
+
+    const store = {
+      mode: 'local',
+      client: null,
+      ready: null,
+
+      init() {
+        this.ready ??= (async () => {
+          try {
+            const { createClient } = await withTimeout(import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'));
+            const client = createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false, autoRefreshToken: false } });
+            const { error } = await withTimeout(client.from(TABLE).select('slug').limit(1));
+            if (error) throw new Error(error.message);
+            this.client = client;
+            this.mode = 'supabase';
+          } catch (err) {
+            console.warn(`No se pudo usar la tabla "${TABLE}" de Supabase; se guarda en este navegador.`, err);
+          }
+          const online = this.mode === 'supabase';
+          $('mode-dot').className = online ? 'mode-dot' : 'mode-dot local';
+          $('mode-label').textContent = online ? 'Base de datos conectada' : 'Guardado local (este navegador)';
+        })();
+        return this.ready;
+      },
+
+      localRows() {
+        try { return JSON.parse(localStorage.getItem(LOCAL_KEY)) || []; } catch { return []; }
+      },
+
+      async list() {
+        await this.init();
+        if (this.mode === 'local') {
+          return this.localRows()
+            .sort((a, b) => String(b.updated_at).localeCompare(String(a.updated_at)))
+            .map(row => normalizeCV(row.data));
+        }
+        const { data, error } = await this.client.from(TABLE).select('data').order('updated_at', { ascending: false });
+        if (error) throw new Error(error.message);
+        return data.map(row => normalizeCV(row.data));
+      },
+
+      async get(slug) {
+        await this.init();
+        if (this.mode === 'local') {
+          const row = this.localRows().find(r => r.slug === slug);
+          return row ? normalizeCV(row.data) : null;
+        }
+        const { data, error } = await this.client.from(TABLE).select('data').eq('slug', slug).maybeSingle();
+        if (error) throw new Error(error.message);
+        return data ? normalizeCV(data.data) : null;
+      },
+
+      /* previousSlug: enlace con el que estaba guardada (null si es nueva) */
+      async save(cv, previousSlug) {
+        const slug = cv.profile.slug;
+        if (slug !== previousSlug && await this.get(slug)) {
+          throw new Error(`Ya existe una hoja de vida con el enlace "${slug}". Cámbialo en Datos personales.`);
+        }
+        const row = { slug, data: cv, updated_at: new Date().toISOString() };
+        if (this.mode === 'local') {
+          const rows = this.localRows().filter(r => r.slug !== slug && r.slug !== previousSlug);
+          localStorage.setItem(LOCAL_KEY, JSON.stringify([...rows, row]));
+          return;
+        }
+        const { error } = await this.client.from(TABLE).upsert(row);
+        if (error) throw new Error(error.message);
+        if (previousSlug && previousSlug !== slug) await this.remove(previousSlug);
+      },
+
+      async remove(slug) {
+        await this.init();
+        if (this.mode === 'local') {
+          localStorage.setItem(LOCAL_KEY, JSON.stringify(this.localRows().filter(r => r.slug !== slug)));
+          return;
+        }
+        const { error } = await this.client.from(TABLE).delete().eq('slug', slug);
+        if (error) throw new Error(error.message);
+      }
+    };
+
+    /* ==========================================================================
+       5. EXPORTAR / IMPORTAR JSON COMENTADO
+       ========================================================================== */
+    const IMAGE_HELP = 'nombre del archivo de imagen (ej. "logo.png") guardado en la MISMA carpeta que index.html, o un enlace https://';
+
+    /* Ayuda que se escribe como comentarios dentro del JSON exportado */
+    const JSON_HELP = {
+      profile: {
+        title: 'DATOS PERSONALES',
+        fields: {
+          slug: 'Identificador del enlace público (#/cv/identificador). Solo minúsculas, números y guiones. No se puede repetir.',
+          full_name: 'Nombre completo (puede incluir credenciales, ej. PMP®).',
+          headline: 'Titular profesional que aparece bajo el nombre.',
+          summary: 'Perfil profesional (resumen de 3 a 5 líneas).',
+          linkedin_url: 'Los enlaces deben empezar por https://',
+          avatar_url: `FOTO DE PERFIL: ${IMAGE_HELP}.`,
+          video_url: 'Video de presentación: enlace de YouTube o Vimeo, o nombre de un archivo .mp4 guardado en la carpeta de index.html.',
+          drive_url: 'Enlace https:// a la carpeta de anexos (Google Drive). Con él se genera el código QR.'
+        }
+      },
+      settings: {
+        title: 'APARIENCIA',
+        fields: {
+          theme: 'Tema: "light" (claro), "dark" (oscuro) o "corporate" (corporativo).',
+          primary_color: 'Colores en formato hexadecimal, ej. "#0f4c81".',
+          border_style: 'Bordes y foto: "rounded" (redondeado) o "square" (cuadrado).',
+          font_family: `Tipografía: ${FONTS.map(f => `"${f}"`).join(', ')}.`,
+          layout: 'Estructura: "sidebar" (con barra lateral) o "single" (una sola columna).',
+          show_qr: 'Opciones de mostrar/ocultar: true = mostrar, false = ocultar.'
+        }
+      },
+      sections: {
+        title: 'SECCIONES (el orden de esta lista es el orden en pantalla)',
+        notes: [
+          'section_key: identifica la sección. NO lo cambies.',
+          'title: título visible de la sección.',
+          'icon: nombre de un ícono de https://lucide.dev/icons (ej. "briefcase"), o un archivo de imagen guardado en la carpeta de index.html (ej. "icono.png").',
+          'is_visible: true = se muestra / false = se oculta.   start_collapsed: true = aparece plegada.'
+        ]
+      },
+      experiences: {
+        title: 'EXPERIENCIA PROFESIONAL',
+        notes: [
+          `company_logo: LOGO DE LA EMPRESA, ${IMAGE_HELP}.`,
+          'start_date / end_date: fechas como texto, ej. "2022-03".   is_current: true si es el cargo actual.',
+          'methodology: "Predictiva", "Ágil" o "Híbrida".',
+          'achievements: lista de logros; cada logro va entre comillas y separado por coma.',
+          'is_visible (en todas las listas): true = se muestra / false = se oculta.'
+        ]
+      },
+      projects: {
+        title: 'PROYECTOS (ESTÁNDAR PMI)',
+        notes: [
+          `client_logo: LOGO DEL CLIENTE, ${IMAGE_HELP}.`,
+          'budget y team_size: números sin comillas ni puntos de miles (ej. 2450000).   currency: moneda, ej. "USD".',
+          'knowledge_areas: lista de áreas de conocimiento del PMBOK.'
+        ]
+      },
+      certifications: {
+        title: 'CERTIFICACIONES',
+        notes: [
+          `badge_url: INSIGNIA DE LA CERTIFICACIÓN, ${IMAGE_HELP}.`,
+          'pdus: número sin comillas.   talent_triangle: "Ways of Working", "Power Skills" o "Business Acumen".',
+          'verify_url: enlace https:// para verificar la credencial.'
+        ]
+      },
+      education: {
+        title: 'EDUCACIÓN',
+        notes: ['degree: título obtenido.   institution: institución.   field: área de estudio.']
+      },
+      skills: {
+        title: 'HABILIDADES',
+        notes: [
+          'category: grupo en el que aparece. Si contiene "Ways of Working", "Power Skills" o "Business Acumen" también cuenta para el PMI Talent Triangle.',
+          'level: dominio de 0 a 100 (número sin comillas).',
+          'icon: nombre de un ícono de https://lucide.dev/icons, o un archivo de imagen guardado en la carpeta de index.html.'
+        ]
+      },
+      languages: {
+        title: 'IDIOMAS',
+        notes: ['level: texto del nivel, ej. "Avanzado (C1)".   percentage: de 0 a 100 (número sin comillas).']
+      },
+      allies: {
+        title: 'EMPRESAS ALIADAS Y CLIENTES',
+        notes: [`logo_url: LOGO, ${IMAGE_HELP}.`, 'website_url: enlace https:// del sitio web.']
+      }
+    };
+
+    /* Lista todas las imágenes, íconos y videos que usa la hoja de vida */
+    function listMediaFiles(cv) {
+      const refs = [];
+      const add = (path, label) => { if (String(path || '').trim()) refs.push({ path: String(path).trim(), label }); };
+      const isIconFile = (v) => /\.(png|jpe?g|gif|webp|svg)$/i.test(String(v || ''));
+
+      add(cv.profile.avatar_url, 'Foto de perfil');
+      if (/\.(mp4|webm)$/i.test(cv.profile.video_url)) add(cv.profile.video_url, 'Video de presentación');
+      cv.sections.filter(s => isIconFile(s.icon)).forEach(s => add(s.icon, `Ícono de la sección «${s.title}»`));
+      cv.experiences.forEach(e => add(e.company_logo, `Logo de ${e.company || 'empresa'}`));
+      cv.projects.forEach(p => add(p.client_logo, `Logo de ${p.client_name || 'cliente'}`));
+      cv.certifications.forEach(c => add(c.badge_url, `Insignia de ${c.name || 'certificación'}`));
+      cv.skills.filter(s => isIconFile(s.icon)).forEach(s => add(s.icon, `Ícono de la habilidad «${s.name}»`));
+      cv.allies.forEach(a => add(a.logo_url, `Logo de ${a.name || 'aliado'}`));
+
+      return {
+        local: refs.filter(r => !isWebURL(r.path)),
+        web: refs.filter(r => isWebURL(r.path))
+      };
+    }
+
+    function toCommentedJSON(cv) {
+      const lines = [];
+      const comment = (text = '', indent = 0) => lines.push(`${' '.repeat(indent)}//${text ? ' ' + text : ''}`);
+      const bar = '=====================================================================';
+      const { local } = listMediaFiles(cv);
+
+      comment(bar);
+      comment(` HOJA DE VIDA: ${cv.profile.full_name || '(sin nombre)'}`);
+      comment(` Archivo de datos exportado el ${todayText()} desde PMI CV Platform`);
+      comment(bar);
+      comment();
+      comment(' ¿QUÉ ES ESTE ARCHIVO?');
+      comment(' Contiene TODA la información de la hoja de vida. Las líneas que empiezan');
+      comment(' con // son comentarios de ayuda: el programa las ignora al importar.');
+      comment();
+      comment(' ¿CÓMO AGREGARLO A LA BASE DE DATOS?');
+      comment(' 1. Abre index.html y pulsa "Agregar nueva" (o "Editar" en una hoja de vida existente).');
+      comment(' 2. Pulsa "Importar JSON" y elige este archivo.');
+      comment(' 3. Revisa la vista previa y pulsa "Guardar".');
+      comment();
+      comment(' IMÁGENES E ÍCONOS (MUY IMPORTANTE)');
+      comment(' Este archivo NO lleva las imágenes por dentro: solo guarda su dirección');
+      comment(' (el nombre del archivo). Para que se vean, copia cada imagen en la MISMA');
+      comment(' CARPETA donde está index.html, con el nombre exacto que aparece aquí');
+      comment(' (respeta mayúsculas, minúsculas y la extensión .jpg / .png).');
+      comment();
+      if (local.length) {
+        comment(' Archivos que esta hoja de vida necesita en la carpeta de index.html:');
+        local.forEach(ref => comment(`   - ${ref.path}   (${ref.label})`));
+      } else {
+        comment(' Esta hoja de vida no usa archivos de imagen locales por ahora.');
+      }
+      comment(' Las direcciones que empiezan por https:// son imágenes de internet: no hay que copiarlas.');
+      comment();
+      comment(' REGLAS PARA EDITARLO A MANO (por ejemplo con el Bloc de notas)');
+      comment(' - Cambia solo el texto que está entre comillas, a la derecha de los dos puntos.');
+      comment(' - No borres comillas, comas, llaves { } ni corchetes [ ].');
+      comment(' - true = sí, false = no (se escriben sin comillas).');
+      comment(bar);
+      lines.push('{');
+
+      const keys = Object.keys(JSON_HELP);
+      keys.forEach((key, index) => {
+        const help = JSON_HELP[key];
+        const comma = index < keys.length - 1 ? ',' : '';
+        lines.push('');
+        comment(`---------- ${help.title} ----------`, 2);
+        (help.notes || []).forEach(note => comment(note, 2));
+
+        if (Array.isArray(cv[key])) {
+          const body = JSON.stringify(cv[key], null, 2).split('\n').map((l, i) => (i ? '  ' + l : l)).join('\n');
+          lines.push(`  "${key}": ${body}${comma}`);
+        } else {
+          lines.push(`  "${key}": {`);
+          const entries = Object.entries(cv[key]);
+          entries.forEach(([field, value], i) => {
+            if (help.fields?.[field]) comment(help.fields[field], 4);
+            lines.push(`    ${JSON.stringify(field)}: ${JSON.stringify(value)}${i < entries.length - 1 ? ',' : ''}`);
+          });
+          lines.push(`  }${comma}`);
+        }
+      });
+
+      lines.push('}');
+      return lines.join('\n').replace(/\n/g, '\r\n');
+    }
+
+    /* Lee un JSON con o sin comentarios (de línea o de bloque) y tolera comas sobrantes */
+    function parseCommentedJSON(text) {
+      const source = String(text).replace(/^﻿/, '');
+      let clean = '';
+      let inString = false;
+
+      for (let i = 0; i < source.length; i++) {
+        const ch = source[i];
+        const next = source[i + 1];
+        if (inString) {
+          clean += ch;
+          if (ch === '\\') clean += source[++i] ?? '';
+          else if (ch === '"') inString = false;
+        } else if (ch === '"') {
+          inString = true;
+          clean += ch;
+        } else if (ch === '/' && next === '/') {
+          while (i < source.length && source[i] !== '\n') i++;
+          clean += '\n';
+        } else if (ch === '/' && next === '*') {
+          i += 2;
+          while (i < source.length && !(source[i] === '*' && source[i + 1] === '/')) i++;
+          i++;
+        } else {
+          clean += ch;
+        }
+      }
+
+      let result = '';
+      inString = false;
+      for (let i = 0; i < clean.length; i++) {
+        const ch = clean[i];
+        if (inString) {
+          result += ch;
+          if (ch === '\\') result += clean[++i] ?? '';
+          else if (ch === '"') inString = false;
+        } else if (ch === '"') {
+          inString = true;
+          result += ch;
+        } else if (ch === ',' && /^\s*[}\]]/.test(clean.slice(i + 1))) {
+          continue;
+        } else {
+          result += ch;
+        }
+      }
+      return JSON.parse(result);
+    }
+
+    function downloadText(filename, text) {
+      const url = URL.createObjectURL(new Blob([text], { type: 'application/json;charset=utf-8' }));
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    /* Explica al usuario qué contiene el JSON y dónde van las imágenes antes de descargarlo */
+    function openExportModal(cv) {
+      const { local, web } = listMediaFiles(cv);
+      const body = openModal('Exportar hoja de vida (JSON)', `
+        <p>El archivo JSON guarda <strong>toda la información</strong> de esta hoja de vida, con comentarios que explican cada campo.</p>
+        <div class="notice">
+          <strong>Las imágenes no viajan dentro del JSON.</strong> El archivo solo guarda su dirección (el nombre del archivo).
+          Para que se vean, cada imagen debe estar en la <strong>misma carpeta donde está index.html</strong>, con el mismo nombre.
+        </div>
+        ${local.length ? `
+          <p><strong>Copia estos archivos junto a index.html:</strong></p>
+          <ul>${local.map(ref => `<li><code>${escapeHTML(ref.path)}</code> — ${escapeHTML(ref.label)}</li>`).join('')}</ul>
+        ` : `<p>Esta hoja de vida no usa archivos de imagen locales, así que no hay nada que copiar.</p>`}
+        ${web.length ? `<p class="hint">${web.length} imagen(es) usan un enlace de internet (https://) y no necesitan copiarse.</p>` : ''}
+        <p><strong>Para agregarla a la base de datos</strong> en otro equipo o más adelante:</p>
+        <ol>
+          <li>Pulsa <strong>Agregar nueva</strong> en el panel principal.</li>
+          <li>Pulsa <strong>Importar JSON</strong> y elige el archivo descargado.</li>
+          <li>Revisa la vista previa y pulsa <strong>Guardar</strong>.</li>
+        </ol>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" id="export-cancel">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="export-download"><i data-lucide="download"></i> Descargar JSON</button>
+        </div>
+      `);
+      body.querySelector('#export-cancel').addEventListener('click', closeModal);
+      body.querySelector('#export-download').addEventListener('click', () => {
+        const name = slugify(cv.profile.slug || cv.profile.full_name) || 'nueva';
+        downloadText(`hoja-de-vida-${name}.json`, toCommentedJSON(cv));
+        closeModal();
+        showToast('JSON descargado. Recuerda guardar las imágenes junto a index.html');
+      });
+    }
+
+    /* ==========================================================================
+       6. APARIENCIA
+       ========================================================================== */
+    function applyVisualSettings(settings = DEFAULT_SETTINGS) {
+      const s = { ...DEFAULT_SETTINGS, ...settings };
+      const root = document.documentElement;
+      const font = FONTS.includes(s.font_family) ? s.font_family : 'Inter';
+      root.setAttribute('data-theme', s.theme);
+      root.style.setProperty('--primary', s.primary_color);
+      root.style.setProperty('--secondary', s.secondary_color);
+      root.style.setProperty('--accent', s.accent_color);
+      root.style.setProperty('--radius', s.border_style === 'square' ? '2px' : '12px');
+      root.style.setProperty('--avatar-radius', s.border_style === 'square' ? '6px' : '50%');
+      root.style.setProperty('--font-main', `'${font}', sans-serif`);
+    }
+
+    /* ==========================================================================
+       7. VISTA: PANEL PRINCIPAL (#/)
+       ========================================================================== */
+    let routeToken = 0;
+
+    async function renderDirectoryView(token) {
+      applyVisualSettings();
+      document.title = 'Hojas de Vida | PMI CV Platform';
+      const root = $('app-root');
+      root.innerHTML = `<p style="text-align:center; padding:2rem;">Cargando hojas de vida…</p>`;
+
+      let items = [];
+      try {
+        items = await store.list();
+      } catch (err) {
+        showToast(`No se pudieron cargar las hojas de vida: ${err.message}`);
+      }
+      if (token !== routeToken) return;
+
+      root.innerHTML = `
+        <section class="directory-hero">
+          <h1>Hojas de Vida de Profesionales en Gestión de Proyectos</h1>
+          <p>Portafolios bajo estándares PMI®: casos de proyecto, métricas de valor ganado, certificaciones y anexos verificables.</p>
+          <div class="search-bar" role="search">
+            <input type="search" id="dir-search" placeholder="Buscar por nombre, cargo o habilidad (ej. PMP, Scrum, SAP)…" aria-label="Buscar hojas de vida" />
+          </div>
+        </section>
+
+        ${store.mode === 'local' ? `
+          <div class="notice">
+            <strong>Guardado local:</strong> no se encontró la tabla <code>${TABLE}</code> en la base de datos, así que las hojas de vida
+            se guardan solo en este navegador. Ejecuta una vez el archivo <code>supabase-tabla.sql</code> en Supabase para que sean visibles desde cualquier equipo.
+          </div>
+        ` : ''}
+
+        <div class="directory-toolbar">
+          <strong id="dir-count"></strong>
+          <a href="#/nueva" class="btn btn-primary"><i data-lucide="plus"></i> Agregar nueva</a>
+        </div>
+        <div id="dir-results" class="directory-grid"></div>
+      `;
+
+      const renderCards = (query = '') => {
+        const q = query.trim().toLowerCase();
+        const grid = $('dir-results');
+        const filtered = items.filter(cv => !q || [cv.profile.full_name, cv.profile.headline, ...visible(cv.skills).map(s => s.name)]
+          .some(text => String(text || '').toLowerCase().includes(q)));
+
+        $('dir-count').textContent = `${filtered.length} ${filtered.length === 1 ? 'hoja de vida' : 'hojas de vida'}`;
+
+        if (!items.length) {
+          grid.innerHTML = `
+            <div class="cv-card empty-state">
+              <h2 style="font-size:1.15rem; margin-bottom:0.4rem;">Todavía no hay hojas de vida</h2>
+              <p style="color:var(--text-muted); margin-bottom:1rem;">Pulsa «Agregar nueva» para crear la primera, o carga una de ejemplo para ver cómo queda.</p>
+              <button type="button" class="btn btn-secondary" id="load-example"><i data-lucide="sparkles"></i> Cargar hoja de vida de ejemplo</button>
+            </div>`;
+          $('load-example').addEventListener('click', async () => {
+            try {
+              await store.save(structuredClone(EXAMPLE_CV), null);
+              router();
+            } catch (err) {
+              showToast(`No se pudo guardar el ejemplo: ${err.message}`);
+            }
+          });
+        } else if (!filtered.length) {
+          grid.innerHTML = `<div class="cv-card empty-state">No se encontraron hojas de vida con ese criterio.</div>`;
+        } else {
+          grid.innerHTML = filtered.map(cv => {
+            const p = cv.profile;
+            const slug = encodeURIComponent(p.slug);
+            return `
+              <article class="profile-card">
+                <div class="profile-card-header">
+                  ${avatarHTML(p, 'profile-card-avatar')}
+                  <div>
+                    <h2 style="font-size:1.08rem; margin-bottom:0.2rem;">${escapeHTML(p.full_name)}</h2>
+                    <p style="font-size:0.84rem; color:var(--primary); font-weight:600;">${escapeHTML(p.headline)}</p>
+                    ${p.location ? `<span style="font-size:0.78rem; color:var(--text-muted);"><i data-lucide="map-pin" style="width:13px;height:13px;vertical-align:middle;"></i> ${escapeHTML(p.location)}</span>` : ''}
+                  </div>
+                </div>
+                <p style="font-size:0.86rem; color:var(--text-muted); display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">${escapeHTML(p.summary)}</p>
+                <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
+                  ${visible(cv.skills).slice(0, 4).map(s => `<span class="badge">${escapeHTML(s.name)}</span>`).join('')}
+                </div>
+                <div style="margin-top:auto; padding-top:0.75rem; border-top:1px solid var(--border-color); display:flex; justify-content:flex-end; gap:0.5rem;">
+                  <a href="#/editar/${slug}" class="btn btn-secondary btn-sm"><i data-lucide="pencil"></i> Editar</a>
+                  <a href="#/cv/${slug}" class="btn btn-primary btn-sm">Ver hoja de vida <i data-lucide="arrow-right"></i></a>
+                </div>
+              </article>`;
+          }).join('');
+        }
+        refreshIcons();
+      };
+
+      renderCards();
+      $('dir-search').addEventListener('input', (e) => renderCards(e.target.value));
+    }
+
+    /* ==========================================================================
+       8. VISTA: HOJA DE VIDA (#/cv/{slug})
+       ========================================================================== */
+    function methodologyBadgeClass(methodology = '') {
+      const m = String(methodology).toLowerCase();
+      if (m.includes('ágil') || m.includes('agil') || m.includes('agile')) return 'badge-agile';
+      if (m.includes('predict')) return 'badge-predictive';
+      return 'badge-hybrid';
+    }
+
+    /* Acepta enlaces normales de YouTube/Vimeo y los convierte al formato incrustable */
+    function videoEmbed(url) {
+      const v = String(url || '').trim();
+      if (!v) return null;
+      const youtube = v.match(/(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/);
+      if (youtube) return { tag: 'iframe', src: `https://www.youtube.com/embed/${youtube[1]}`, link: v };
+      const vimeo = v.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+      if (vimeo) return { tag: 'iframe', src: `https://player.vimeo.com/video/${vimeo[1]}`, link: v };
+      if (/\.(mp4|webm)$/i.test(v)) {
+        const src = mediaSrc(v);
+        return src ? { tag: 'video', src, link: v } : null;
+      }
+      const src = safeURL(v);
+      return src ? { tag: 'iframe', src, link: v } : null;
+    }
+
+    function generateQRCodes(container) {
+      if (!window.QRCode) return;
+      container.querySelectorAll('.cv-qr-canvas').forEach(canvas => {
+        window.QRCode.toCanvas(canvas, canvas.dataset.url, {
+          width: 148,
+          margin: 1,
+          color: { dark: '#0f172a', light: '#ffffff' }
+        }, (err) => { if (err) console.warn('Error generando QR:', err); });
+      });
+    }
+
+    function renderSectionContent(key, cv) {
+      const { profile, settings } = cv;
+
+      switch (key) {
+        case 'video': {
+          const video = videoEmbed(profile.video_url);
+          if (!video) return '';
+          return `
+            <div class="video-container">
+              ${video.tag === 'video'
+                ? `<video controls preload="none" src="${escapeHTML(video.src)}"></video>`
+                : `<iframe src="${escapeHTML(video.src)}" title="Video de presentación de ${escapeHTML(profile.full_name)}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`}
+            </div>
+            <div class="print-video-fallback">
+              <strong>Video de presentación disponible en línea:</strong><br/>
+              <span>${escapeHTML(video.link)}</span>
+            </div>`;
+        }
+
+        case 'summary':
+          return profile.summary
+            ? `<p style="font-size:0.98rem; line-height:1.75; white-space:pre-line;">${escapeHTML(profile.summary)}</p>`
+            : '';
+
+        case 'experience': {
+          const list = visible(cv.experiences);
+          if (!list.length) return '';
+          return `
+            <div class="timeline">
+              ${list.map(exp => `
+                <article class="timeline-item">
+                  <span class="timeline-dot" aria-hidden="true"></span>
+                  <div class="exp-header">
+                    <div class="exp-company-wrap">
+                      ${mediaSrc(exp.company_logo) ? `<img src="${escapeHTML(mediaSrc(exp.company_logo))}" alt="Logo ${escapeHTML(exp.company)}" class="company-logo" loading="lazy" />` : ''}
+                      <div>
+                        <h3 style="font-size:1.02rem; font-weight:700;">${escapeHTML(exp.role)}</h3>
+                        <p style="font-size:0.88rem; color:var(--primary); font-weight:600;">${escapeHTML(exp.company)}</p>
+                      </div>
+                    </div>
+                    <div style="display:flex; align-items:center; gap:0.45rem; flex-wrap:wrap;">
+                      ${exp.methodology ? `<span class="badge ${methodologyBadgeClass(exp.methodology)}">${escapeHTML(exp.methodology)}</span>` : ''}
+                      <span class="badge"><i data-lucide="calendar" style="width:12px;height:12px;"></i> ${escapeHTML(exp.start_date)} — ${escapeHTML(exp.is_current ? 'Actualidad' : exp.end_date)}</span>
+                    </div>
+                  </div>
+                  <ul class="achievements-list">
+                    ${toArray(exp.achievements).map(item => `<li>${escapeHTML(item)}</li>`).join('')}
+                  </ul>
+                </article>
+              `).join('')}
+            </div>`;
+        }
+
+        case 'projects': {
+          const list = visible(cv.projects);
+          if (!list.length) return '';
+          return `
+            <div class="projects-grid">
+              ${list.map(proj => `
+                <article class="pmi-project-card">
+                  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:0.75rem; flex-wrap:wrap;">
+                    <div class="exp-company-wrap">
+                      ${mediaSrc(proj.client_logo) ? `<img src="${escapeHTML(mediaSrc(proj.client_logo))}" alt="Logo ${escapeHTML(proj.client_name)}" class="company-logo" loading="lazy" />` : ''}
+                      <div>
+                        <h3 style="font-size:1.06rem; font-weight:700; color:var(--primary);">${escapeHTML(proj.name)}</h3>
+                        <p style="font-size:0.85rem; color:var(--text-muted);"><strong>Cliente / Patrocinador:</strong> ${escapeHTML(proj.client_name)} | <strong>Rol:</strong> ${escapeHTML(proj.role)}</p>
+                      </div>
+                    </div>
+                    ${proj.methodology ? `<span class="badge ${methodologyBadgeClass(proj.methodology)}">Metodología ${escapeHTML(proj.methodology)}</span>` : ''}
+                  </div>
+
+                  ${proj.scope ? `<p style="font-size:0.9rem;"><strong>Alcance del proyecto:</strong> ${escapeHTML(proj.scope)}</p>` : ''}
+
+                  <div class="pmi-meta-grid">
+                    <div class="pmi-meta-item">
+                      <strong>Presupuesto gestionado</strong>
+                      <span>${escapeHTML(proj.currency || 'USD')} $${(Number(proj.budget) || 0).toLocaleString('es-CO')}</span>
+                    </div>
+                    <div class="pmi-meta-item">
+                      <strong>Tamaño del equipo</strong>
+                      <span>${Number(proj.team_size) || 0} especialistas</span>
+                    </div>
+                    <div class="pmi-meta-item">
+                      <strong>Duración / Cronograma</strong>
+                      <span>${escapeHTML(proj.duration)}</span>
+                    </div>
+                  </div>
+
+                  ${proj.deliverables ? `<p style="font-size:0.88rem;"><strong>Entregables clave (WBS):</strong> ${escapeHTML(proj.deliverables)}</p>` : ''}
+
+                  ${proj.kpis_results ? `
+                    <div class="pmi-kpi-box">
+                      <strong style="color:var(--accent); display:flex; align-items:center; gap:0.35rem; margin-bottom:0.2rem;">
+                        <i data-lucide="bar-chart-3" style="width:16px;height:16px;"></i> KPIs y resultados medibles:
+                      </strong>
+                      <span>${escapeHTML(proj.kpis_results)}</span>
+                    </div>` : ''}
+
+                  ${toArray(proj.knowledge_areas, ',').length ? `
+                    <div style="display:flex; flex-wrap:wrap; gap:0.35rem; align-items:center;">
+                      <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted); margin-right:0.25rem;">Áreas PMBOK®:</span>
+                      ${toArray(proj.knowledge_areas, ',').map(area => `<span class="badge">${escapeHTML(area)}</span>`).join('')}
+                    </div>` : ''}
+                </article>
+              `).join('')}
+            </div>`;
+        }
+
+        case 'certifications': {
+          const list = visible(cv.certifications);
+          if (!list.length) return '';
+          return `
+            <div class="certs-grid">
+              ${list.map(cert => `
+                <article class="cert-card">
+                  ${(settings.show_badges && mediaSrc(cert.badge_url)) ? `<img src="${escapeHTML(mediaSrc(cert.badge_url))}" alt="Insignia ${escapeHTML(cert.name)}" class="cert-badge-img" loading="lazy" />` : ''}
+                  <div style="flex:1;">
+                    <h3 style="font-size:0.95rem; font-weight:700;">${escapeHTML(cert.name)}</h3>
+                    <p style="font-size:0.82rem; color:var(--primary); font-weight:600;">${escapeHTML(cert.issuer)}</p>
+                    <p style="font-size:0.78rem; color:var(--text-muted); margin-top:0.25rem;">
+                      ${[
+                        cert.credential_code && `ID: <strong>${escapeHTML(cert.credential_code)}</strong>`,
+                        cert.issue_date && `Emisión: ${escapeHTML(cert.issue_date)}`,
+                        cert.expiry_date && `Vence: ${escapeHTML(cert.expiry_date)}`
+                      ].filter(Boolean).join(' | ')}
+                    </p>
+                    <div style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-top:0.45rem;">
+                      ${Number(cert.pdus) ? `<span class="badge">${Number(cert.pdus)} PDUs</span>` : ''}
+                      ${cert.talent_triangle ? `<span class="badge">${escapeHTML(cert.talent_triangle)}</span>` : ''}
+                    </div>
+                    ${safeURL(cert.verify_url) ? `<a href="${escapeHTML(safeURL(cert.verify_url))}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:0.25rem; font-size:0.78rem; margin-top:0.45rem; font-weight:600;">Verificar credencial <i data-lucide="external-link" style="width:12px;height:12px;"></i></a>` : ''}
+                  </div>
+                </article>
+              `).join('')}
+            </div>`;
+        }
+
+        case 'education': {
+          const list = visible(cv.education);
+          if (!list.length) return '';
+          return `
+            <div style="display:grid; gap:0.85rem;">
+              ${list.map(ed => `
+                <div style="padding:1rem; background:var(--bg-muted); border:1px solid var(--border-color); border-radius:var(--radius); display:flex; justify-content:space-between; flex-wrap:wrap; gap:0.5rem; break-inside:avoid;">
+                  <div>
+                    <h3 style="font-size:0.98rem; font-weight:700;">${escapeHTML(ed.degree)}</h3>
+                    <p style="font-size:0.86rem; color:var(--primary); font-weight:600;">${escapeHTML([ed.institution, ed.field].filter(Boolean).join(' — '))}</p>
+                  </div>
+                  <span class="badge">${escapeHTML([ed.start_year, ed.end_year].filter(Boolean).join(' - '))}</span>
+                </div>
+              `).join('')}
+            </div>`;
+        }
+
+        case 'allies': {
+          const list = visible(cv.allies);
+          if (!list.length) return '';
+          return `
+            <div class="allies-strip">
+              ${list.map(ally => {
+                const href = safeURL(ally.website_url);
+                const inner = `
+                  ${mediaSrc(ally.logo_url) ? `<img src="${escapeHTML(mediaSrc(ally.logo_url))}" alt="" class="ally-logo" loading="lazy" />` : ''}
+                  <span style="font-size:0.76rem; font-weight:600; color:var(--text-main);">${escapeHTML(ally.name)}</span>`;
+                return href
+                  ? `<a href="${escapeHTML(href)}" target="_blank" rel="noopener noreferrer" class="ally-item">${inner}</a>`
+                  : `<div class="ally-item">${inner}</div>`;
+              }).join('')}
+            </div>`;
+        }
+
+        case 'annexes': {
+          const driveURL = safeURL(profile.drive_url);
+          if (!driveURL) return '';
+          return `
+            <div class="annexes-box">
+              <p style="font-size:0.9rem; max-width:520px; color:var(--text-muted);">
+                Escanea el código QR o usa el botón para consultar certificados, diplomas, actas de proyecto y demás respaldos:
+              </p>
+              ${settings.show_qr ? `
+                <div class="qr-canvas-wrap">
+                  <canvas class="cv-qr-canvas" data-url="${escapeHTML(driveURL)}" aria-label="Código QR hacia la carpeta de anexos"></canvas>
+                  <span class="qr-print-url">${escapeHTML(driveURL)}</span>
+                </div>` : ''}
+              <a href="${escapeHTML(driveURL)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary no-print">
+                <i data-lucide="folder-open"></i> Ver anexos
+              </a>
+            </div>`;
+        }
+
+        default:
+          return '';
+      }
+    }
+
+    function renderCVHTML(cv, isPreview = false) {
+      const { profile, settings } = cv;
+      applyVisualSettings(settings);
+
+      const sections = visible(cv.sections)
+        .map(sec => ({ ...sec, html: renderSectionContent(sec.section_key, cv) }))
+        .filter(sec => sec.html);
+
+      const countable = { experience: 'experiences', projects: 'projects', certifications: 'certifications', education: 'education', allies: 'allies' };
+
+      const skills = visible(cv.skills);
+      const skillGroups = Object.entries(Object.groupBy(skills, sk => sk.category || 'Competencias Clave'));
+      const languages = visible(cv.languages);
+
+      /* PMI Talent Triangle®: promedio de las habilidades cuya categoría nombra cada lado */
+      const triangle = TALENT_TRIANGLE.map(label => {
+        const group = skills.filter(sk => String(sk.category || '').toLowerCase().includes(label.toLowerCase()));
+        return group.length ? [label, Math.round(group.reduce((sum, sk) => sum + percent(sk.level), 0) / group.length)] : null;
+      }).filter(Boolean);
+
+      const bar = (value) => `<div class="progress-track"><div class="progress-fill" style="width:${percent(value)}%;"></div></div>`;
+
+      const body = `
+        <div class="print-only-header">
+          <div><strong>${escapeHTML(profile.full_name)}</strong>${profile.headline ? ` — ${escapeHTML(profile.headline)}` : ''}</div>
+          ${settings.show_print_date ? `<div>Fecha de impresión: <span class="js-print-date">${todayText()}</span></div>` : ''}
+        </div>
+
+        ${(!isPreview && sections.length) ? `
+          <nav class="cv-subnav no-print" aria-label="Secciones de la hoja de vida">
+            <div class="section-anchors">
+              ${sections.map(sec => `<a href="#sec-${sec.section_key}" class="section-anchor" data-section-link="${sec.section_key}">${escapeHTML(sec.title)}</a>`).join('')}
+            </div>
+            <div class="accordion-controls">
+              <button type="button" class="btn btn-secondary btn-sm" data-toggle-all="open"><i data-lucide="chevrons-down"></i> Expandir todo</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-toggle-all="close"><i data-lucide="chevrons-up"></i> Plegar todo</button>
+            </div>
+          </nav>` : ''}
+
+        <div class="cv-layout ${settings.layout === 'single' ? 'single-column' : ''}">
+          <aside class="cv-sidebar">
+            <section class="cv-card hero-profile" aria-label="Datos principales">
+              ${avatarHTML(profile, 'hero-avatar')}
+              <h1 class="hero-name">${escapeHTML(profile.full_name || 'Nombre completo')}</h1>
+              <p class="hero-headline">${escapeHTML(profile.headline)}</p>
+              ${profile.location ? `<span class="hero-location"><i data-lucide="map-pin" style="width:15px;height:15px;"></i> ${escapeHTML(profile.location)}</span>` : ''}
+
+              <div class="contact-list">
+                ${profile.email ? `<div class="contact-item"><i data-lucide="mail" style="width:16px;height:16px;"></i> <a href="mailto:${escapeHTML(profile.email)}">${escapeHTML(profile.email)}</a></div>` : ''}
+                ${profile.phone ? `<div class="contact-item"><i data-lucide="phone" style="width:16px;height:16px;"></i> <a href="tel:${escapeHTML(profile.phone)}">${escapeHTML(profile.phone)}</a></div>` : ''}
+                ${safeURL(profile.linkedin_url) ? `<div class="contact-item"><i data-lucide="linkedin" style="width:16px;height:16px;"></i> <a href="${escapeHTML(safeURL(profile.linkedin_url))}" target="_blank" rel="noopener noreferrer">Perfil de LinkedIn</a></div>` : ''}
+                ${safeURL(profile.website_url) ? `<div class="contact-item"><i data-lucide="globe" style="width:16px;height:16px;"></i> <a href="${escapeHTML(safeURL(profile.website_url))}" target="_blank" rel="noopener noreferrer">Portafolio web</a></div>` : ''}
+              </div>
+
+              ${!isPreview ? `
+                <div class="hero-actions">
+                  <button type="button" class="btn btn-primary" id="btn-print-cv"><i data-lucide="printer"></i> Imprimir / PDF</button>
+                  <button type="button" class="btn btn-secondary" id="btn-share-cv"><i data-lucide="share-2"></i> Compartir</button>
+                  <a href="#/editar/${encodeURIComponent(profile.slug)}" class="btn btn-secondary" style="grid-column:1 / -1;"><i data-lucide="pencil"></i> Editar hoja de vida</a>
+                </div>` : ''}
+            </section>
+
+            ${skills.length ? `
+              <section class="cv-card" aria-label="Competencias y habilidades">
+                <h2 style="font-size:1.02rem; font-weight:700; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+                  <i data-lucide="cpu" style="color:var(--primary);"></i> Competencias Clave
+                </h2>
+                ${skillGroups.map(([category, list]) => `
+                  <div class="skill-group">
+                    <div class="skill-group-title">${escapeHTML(category)}</div>
+                    ${list.map(sk => `
+                      <div class="skill-item">
+                        <div class="skill-label">
+                          <span>${iconHTML(sk.icon || 'check-circle', 13, 'vertical-align:middle;color:var(--primary);')} ${escapeHTML(sk.name)}</span>
+                          <span>${percent(sk.level)}%</span>
+                        </div>
+                        ${bar(sk.level)}
+                      </div>
+                    `).join('')}
+                  </div>
+                `).join('')}
+
+                ${(settings.show_talent_triangle && triangle.length) ? `
+                  <div class="talent-triangle-box">
+                    <strong style="font-size:0.84rem; display:flex; align-items:center; gap:0.4rem; color:var(--primary);">
+                      <i data-lucide="triangle" style="width:15px;height:15px;"></i> PMI Talent Triangle®
+                    </strong>
+                    <div class="triangle-bars">
+                      ${triangle.map(([label, value]) => `
+                        <div>
+                          <div style="display:flex; justify-content:space-between; font-size:0.78rem; font-weight:600;">
+                            <span>${label}</span><span>${value}%</span>
+                          </div>
+                          ${bar(value)}
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>` : ''}
+              </section>` : ''}
+
+            ${languages.length ? `
+              <section class="cv-card" aria-label="Idiomas">
+                <h2 style="font-size:1.02rem; font-weight:700; margin-bottom:0.85rem; display:flex; align-items:center; gap:0.5rem;">
+                  <i data-lucide="languages" style="color:var(--primary);"></i> Idiomas
+                </h2>
+                ${languages.map(lang => `
+                  <div class="skill-item">
+                    <div class="skill-label">
+                      <strong>${escapeHTML(lang.name)}</strong>
+                      <span style="color:var(--text-muted);">${escapeHTML(lang.level)}</span>
+                    </div>
+                    ${bar(lang.percentage)}
+                  </div>
+                `).join('')}
+              </section>` : ''}
+          </aside>
+
+          <div class="cv-main-content">
+            ${sections.map(sec => {
+              const count = countable[sec.section_key] ? visible(cv[countable[sec.section_key]]).length : null;
+              return `
+                <details id="sec-${sec.section_key}" class="cv-section" ${sec.start_collapsed ? '' : 'open'}>
+                  <summary class="cv-section-header">
+                    <div class="section-title-wrap">
+                      <span class="section-icon-box">${iconHTML(sec.icon || 'layers', 18)}</span>
+                      <span>${escapeHTML(sec.title)}</span>
+                    </div>
+                    <div class="section-meta">
+                      ${count !== null ? `<span class="count-pill">${count} ${count === 1 ? 'elemento' : 'elementos'}</span>` : ''}
+                      <i data-lucide="chevron-down" class="chevron-icon"></i>
+                    </div>
+                  </summary>
+                  <div class="cv-section-body">${sec.html}</div>
+                </details>`;
+            }).join('')}
+          </div>
+        </div>
+      `;
+
+      if (isPreview) return body;
+
+      /* Tabla de impresión: el encabezado y el pie vacíos son el margen de cada página */
+      return `
+        <table class="print-frame" role="presentation">
+          <thead><tr><td><div class="print-space"></div></td></tr></thead>
+          <tbody><tr><td>${body}</td></tr></tbody>
+          <tfoot><tr><td><div class="print-space"></div></td></tr></tfoot>
+        </table>`;
+    }
+
+    function openShareModal(profile) {
+      const shareURL = `${window.location.href.split('#')[0]}#/cv/${encodeURIComponent(profile.slug)}`;
+      const text = `Conoce la hoja de vida de ${profile.full_name}${profile.headline ? ` (${profile.headline})` : ''}`;
+      const body = openModal('Compartir hoja de vida', `
+        <div class="share-grid">
+          <button type="button" class="btn btn-primary" id="share-copy"><i data-lucide="copy"></i> Copiar enlace</button>
+          <a href="https://wa.me/?text=${encodeURIComponent(text + ' ' + shareURL)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i data-lucide="message-circle"></i> WhatsApp</a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareURL)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i data-lucide="linkedin"></i> LinkedIn</a>
+          <a href="mailto:?subject=${encodeURIComponent(text)}&body=${encodeURIComponent(shareURL)}" class="btn btn-secondary"><i data-lucide="mail"></i> Correo</a>
+        </div>
+        ${navigator.share ? `<button type="button" class="btn btn-accent" id="share-native" style="width:100%; margin-top:0.6rem;"><i data-lucide="share-2"></i> Compartir desde el dispositivo</button>` : ''}
+      `);
+      body.querySelector('#share-copy').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(shareURL);
+          showToast('Enlace copiado al portapapeles');
+        } catch {
+          showToast(`Copia este enlace: ${shareURL}`);
+        }
+      });
+      body.querySelector('#share-native')?.addEventListener('click', () => {
+        navigator.share({ title: profile.full_name, text, url: shareURL }).catch(() => {});
+      });
+    }
+
+    function notFoundHTML() {
+      return `
+        <div class="cv-card" style="text-align:center; max-width:540px; margin:2rem auto; padding:2.5rem;">
+          <h1 style="font-size:1.6rem; color:var(--primary); margin-bottom:0.5rem;">Hoja de vida no encontrada</h1>
+          <p style="color:var(--text-muted); margin-bottom:1.5rem;">La hoja de vida que buscas no existe o fue eliminada.</p>
+          <a href="#/" class="btn btn-primary"><i data-lucide="arrow-left"></i> Volver al panel principal</a>
+        </div>`;
+    }
+
+    async function loadCV(slug) {
+      try {
+        return await store.get(slug);
+      } catch (err) {
+        showToast(`No se pudo cargar la hoja de vida: ${err.message}`);
+        return null;
+      }
+    }
+
+    async function renderCVView(slug, token) {
+      const root = $('app-root');
+      root.innerHTML = `<p style="text-align:center; padding:2rem;">Cargando hoja de vida…</p>`;
+
+      const cv = await loadCV(slug);
+      if (token !== routeToken) return;
+      if (!cv) {
+        applyVisualSettings();
+        root.innerHTML = notFoundHTML();
+        refreshIcons();
+        return;
+      }
+
+      /* El título de la página es el nombre que el navegador propone para el PDF */
+      document.title = `${cv.profile.full_name} - Hoja de vida`;
+      root.innerHTML = renderCVHTML(cv);
+      refreshIcons();
+      generateQRCodes(root);
+
+      root.querySelectorAll('[data-toggle-all]').forEach(btn => btn.addEventListener('click', () => {
+        root.querySelectorAll('details.cv-section').forEach(d => { d.open = btn.dataset.toggleAll === 'open'; });
+      }));
+
+      root.querySelectorAll('.section-anchor').forEach(anchor => anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = $(`sec-${anchor.dataset.sectionLink}`);
+        if (target) {
+          target.open = true;
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }));
+
+      $('btn-print-cv').addEventListener('click', () => window.print());
+      $('btn-share-cv').addEventListener('click', () => openShareModal(cv.profile));
+    }
+
+    /* Al imprimir: fecha del día y todas las secciones desplegadas */
+    let sectionsOpenBeforePrint = [];
+
+    window.addEventListener('beforeprint', () => {
+      document.querySelectorAll('.js-print-date').forEach(el => { el.textContent = todayText(); });
+      const sections = [...document.querySelectorAll('details.cv-section')];
+      sectionsOpenBeforePrint = sections.map(d => d.open);
+      sections.forEach(d => { d.open = true; });
+    });
+
+    window.addEventListener('afterprint', () => {
+      document.querySelectorAll('details.cv-section').forEach((d, i) => {
+        if (sectionsOpenBeforePrint[i] !== undefined) d.open = sectionsOpenBeforePrint[i];
+      });
+    });
+
+    /* ==========================================================================
+       9. VISTA: EDITOR (#/nueva y #/editar/{slug})
+       ========================================================================== */
+    const IMAGE_HINT = 'Nombre del archivo (debe estar en la carpeta de index.html) o enlace https://';
+    const ICON_HINT = 'Nombre de un ícono de lucide.dev/icons o archivo de imagen de la carpeta de index.html';
+
+    const PROFILE_FIELDS = [
+      { key: 'full_name', label: 'Nombre completo y credenciales (ej. PMP®)' },
+      { key: 'headline', label: 'Titular profesional' },
+      { key: 'slug', label: 'Enlace de la hoja de vida (#/cv/…)', hint: 'Si lo dejas vacío se crea a partir del nombre. Solo minúsculas, números y guiones.' },
+      { key: 'location', label: 'Ubicación' },
+      { key: 'email', label: 'Correo de contacto' },
+      { key: 'phone', label: 'Teléfono' },
+      { key: 'linkedin_url', label: 'LinkedIn (https://)' },
+      { key: 'website_url', label: 'Sitio web (https://)' },
+      { key: 'avatar_url', label: 'Foto de perfil', type: 'image' },
+      { key: 'summary', label: 'Perfil profesional (resumen de 3 a 5 líneas)', type: 'textarea', rows: 5, wide: true }
+    ];
+
+    const MEDIA_FIELDS = [
+      { key: 'video_url', label: 'Video de presentación', wide: true, hint: 'Enlace de YouTube o Vimeo, o nombre de un archivo .mp4 ubicado en la carpeta de index.html.' },
+      { key: 'drive_url', label: 'Carpeta de anexos en Google Drive (https://)', wide: true, hint: 'Con este enlace se genera el código QR. La carpeta debe estar compartida como «Cualquier persona con el enlace puede ver».' }
+    ];
+
+    const SETTINGS_FIELDS = [
+      { key: 'theme', label: 'Tema visual', type: 'select', options: [['light', 'Claro'], ['dark', 'Oscuro'], ['corporate', 'Corporativo PMI']] },
+      { key: 'border_style', label: 'Estilo de bordes y foto', type: 'select', options: [['rounded', 'Redondeado (foto circular)'], ['square', 'Cuadrado ejecutivo']] },
+      { key: 'font_family', label: 'Tipografía', type: 'select', options: FONTS.map(f => [f, f]) },
+      { key: 'layout', label: 'Estructura', type: 'select', options: [['sidebar', 'Con barra lateral'], ['single', 'Una sola columna']] },
+      { key: 'primary_color', label: 'Color primario', type: 'color' },
+      { key: 'secondary_color', label: 'Color secundario', type: 'color' },
+      { key: 'accent_color', label: 'Color de acento', type: 'color' },
+      { key: 'show_qr', label: 'Mostrar QR de anexos', type: 'checkbox' },
+      { key: 'show_print_date', label: 'Mostrar fecha al imprimir', type: 'checkbox' },
+      { key: 'show_badges', label: 'Mostrar insignias', type: 'checkbox' },
+      { key: 'show_talent_triangle', label: 'Mostrar PMI Talent Triangle®', type: 'checkbox' }
+    ];
+
+    const methodologyField = { key: 'methodology', label: 'Metodología', type: 'select', options: METHODOLOGIES.map(m => [m, m]) };
+
+    /* Listas editables: cada una define sus campos y el formulario se genera solo */
+    const COLLECTIONS = {
+      experiences: {
+        label: 'Experiencia', icon: 'briefcase', title: 'Experiencia profesional', main: 'role', sub: 'company',
+        defaults: { methodology: 'Híbrida', is_current: false, achievements: [] },
+        fields: [
+          { key: 'role', label: 'Cargo' },
+          { key: 'company', label: 'Empresa' },
+          { key: 'company_logo', label: 'Logo de la empresa', type: 'image' },
+          methodologyField,
+          { key: 'start_date', label: 'Inicio (ej. 2022-03)' },
+          { key: 'end_date', label: 'Fin (ej. 2024-06)' },
+          { key: 'is_current', label: 'Es mi cargo actual', type: 'checkbox' },
+          { key: 'achievements', label: 'Logros (uno por línea)', type: 'lines', rows: 4, wide: true }
+        ]
+      },
+      projects: {
+        label: 'Proyectos (PMI)', icon: 'folder-kanban', title: 'Proyectos (estándar PMI)', main: 'name', sub: 'client_name',
+        defaults: { methodology: 'Híbrida', currency: 'USD', budget: 0, team_size: 1, knowledge_areas: [] },
+        fields: [
+          { key: 'name', label: 'Nombre del proyecto' },
+          { key: 'client_name', label: 'Cliente / Organización' },
+          { key: 'client_logo', label: 'Logo del cliente', type: 'image' },
+          { key: 'role', label: 'Rol desempeñado' },
+          methodologyField,
+          { key: 'budget', label: 'Presupuesto', type: 'number' },
+          { key: 'currency', label: 'Moneda' },
+          { key: 'team_size', label: 'Tamaño del equipo', type: 'number' },
+          { key: 'duration', label: 'Duración (ej. 12 meses)' },
+          { key: 'scope', label: 'Alcance', type: 'textarea', rows: 2, wide: true },
+          { key: 'deliverables', label: 'Entregables (WBS)', type: 'textarea', rows: 2, wide: true },
+          { key: 'kpis_results', label: 'KPIs y resultados medibles (CPI, SPI, ROI, ahorro)', type: 'textarea', rows: 2, wide: true },
+          { key: 'knowledge_areas', label: 'Áreas de conocimiento PMBOK (separadas por coma)', type: 'csv', wide: true }
+        ]
+      },
+      education: {
+        label: 'Educación', icon: 'graduation-cap', title: 'Educación y formación', main: 'degree', sub: 'institution',
+        fields: [
+          { key: 'degree', label: 'Título obtenido' },
+          { key: 'institution', label: 'Institución' },
+          { key: 'field', label: 'Área de estudio' },
+          { key: 'start_year', label: 'Año de inicio' },
+          { key: 'end_year', label: 'Año de finalización' }
+        ]
+      },
+      certifications: {
+        label: 'Certificaciones', icon: 'award', title: 'Certificaciones, insignias y PDUs', main: 'name', sub: 'issuer',
+        defaults: { pdus: 0, talent_triangle: 'Ways of Working' },
+        fields: [
+          { key: 'name', label: 'Nombre de la certificación' },
+          { key: 'issuer', label: 'Entidad emisora' },
+          { key: 'credential_code', label: 'Código de credencial' },
+          { key: 'issue_date', label: 'Emisión (ej. 2023-05)' },
+          { key: 'expiry_date', label: 'Vencimiento (ej. 2026-05)' },
+          { key: 'pdus', label: 'PDUs', type: 'number' },
+          { key: 'talent_triangle', label: 'PMI Talent Triangle®', type: 'select', options: TALENT_TRIANGLE.map(t => [t, t]) },
+          { key: 'verify_url', label: 'Enlace de verificación (https://)' },
+          { key: 'badge_url', label: 'Insignia', type: 'image' }
+        ]
+      },
+      skills: {
+        label: 'Habilidades', icon: 'cpu', title: 'Competencias y habilidades', main: 'name', sub: 'category',
+        defaults: { level: 80, icon: 'check-circle' },
+        fields: [
+          { key: 'name', label: 'Habilidad' },
+          { key: 'category', label: 'Categoría', hint: 'Ej. «Ways of Working (Técnicas)», «Power Skills (Liderazgo)» o «Business Acumen (Estrategia)».' },
+          { key: 'level', label: 'Nivel (0 a 100)', type: 'number' },
+          { key: 'icon', label: 'Ícono', hint: ICON_HINT }
+        ]
+      },
+      languages: {
+        label: 'Idiomas', icon: 'languages', title: 'Idiomas', main: 'name', sub: 'level',
+        defaults: { percentage: 80 },
+        fields: [
+          { key: 'name', label: 'Idioma' },
+          { key: 'level', label: 'Nivel (ej. Avanzado C1)' },
+          { key: 'percentage', label: 'Dominio (0 a 100)', type: 'number' }
+        ]
+      },
+      allies: {
+        label: 'Aliados y clientes', icon: 'building-2', title: 'Empresas aliadas y clientes', main: 'name', sub: 'website_url',
+        fields: [
+          { key: 'name', label: 'Nombre' },
+          { key: 'logo_url', label: 'Logo', type: 'image' },
+          { key: 'website_url', label: 'Sitio web (https://)' }
+        ]
+      }
+    };
+
+    const EDITOR_TABS = [
+      { key: 'personal', label: 'Datos personales', icon: 'user' },
+      { key: 'media', label: 'Video y anexos (QR)', icon: 'video' },
+      ...Object.entries(COLLECTIONS).map(([key, cfg]) => ({ key, label: cfg.label, icon: cfg.icon })),
+      { key: 'appearance', label: 'Apariencia y secciones', icon: 'palette' }
+    ];
+
+    function fieldHTML(field, obj) {
+      const value = obj[field.key];
+      const attrs = `data-field="${field.key}" data-type="${field.type || 'text'}"`;
+      const hint = field.hint ? `<span class="hint">${field.hint}</span>` : '';
+      let control;
+
+      switch (field.type) {
+        case 'checkbox':
+          return `<label class="check-row"><input type="checkbox" ${attrs} ${value ? 'checked' : ''} /> ${field.label}</label>`;
+        case 'textarea':
+          control = `<textarea class="form-control" rows="${field.rows || 3}" ${attrs}>${escapeHTML(value)}</textarea>`;
+          break;
+        case 'lines':
+          control = `<textarea class="form-control" rows="${field.rows || 3}" ${attrs}>${escapeHTML(toArray(value).join('\n'))}</textarea>`;
+          break;
+        case 'csv':
+          control = `<input class="form-control" ${attrs} value="${escapeHTML(toArray(value, ',').join(', '))}" />`;
+          break;
+        case 'select':
+          control = `<select class="form-control" ${attrs}>${field.options.map(([val, text]) => `<option value="${escapeHTML(val)}" ${val === value ? 'selected' : ''}>${escapeHTML(text)}</option>`).join('')}</select>`;
+          break;
+        case 'number':
+          control = `<input type="number" class="form-control" ${attrs} value="${Number(value) || 0}" />`;
+          break;
+        case 'color':
+          control = `<input type="color" class="form-control" style="height:42px;" ${attrs} value="${escapeHTML(value)}" />`;
+          break;
+        case 'image':
+          control = `
+            <div class="img-field">
+              <input class="form-control" ${attrs} value="${escapeHTML(value)}" placeholder="foto.jpg" />
+              <label class="btn btn-secondary btn-sm"><i data-lucide="image"></i> Elegir<input type="file" accept="image/*" hidden data-pick /></label>
+            </div>
+            <span class="hint">${IMAGE_HINT}</span>`;
+          break;
+        default:
+          control = `<input class="form-control" ${attrs} value="${escapeHTML(value)}" />`;
+      }
+      return `<div class="form-group ${field.wide ? 'wide' : ''}"><label>${field.label}</label>${control}${hint}</div>`;
+    }
+
+    /* Conecta los campos generados con fieldHTML al objeto que editan */
+    function bindFields(container, getTarget, onChange) {
+      container.querySelectorAll('[data-field]').forEach(el => {
+        el.addEventListener('input', () => {
+          const target = getTarget();
+          const key = el.dataset.field;
+          switch (el.dataset.type) {
+            case 'checkbox': target[key] = el.checked; break;
+            case 'number': target[key] = Number(el.value) || 0; break;
+            case 'lines': target[key] = toArray(el.value); break;
+            case 'csv': target[key] = toArray(el.value, ','); break;
+            default: target[key] = el.value.trim();
+          }
+          onChange(key);
+        });
+      });
+
+      /* "Elegir": anota el nombre del archivo y lo muestra en la vista previa de esta sesión */
+      container.querySelectorAll('[data-pick]').forEach(picker => {
+        picker.addEventListener('change', () => {
+          const file = picker.files[0];
+          if (!file) return;
+          sessionImages.set(file.name, URL.createObjectURL(file));
+          const input = picker.closest('.img-field').querySelector('[data-field]');
+          input.value = file.name;
+          input.dispatchEvent(new Event('input'));
+          showToast(`Recuerda copiar «${file.name}» en la misma carpeta de index.html`);
+          picker.value = '';
+        });
+      });
+    }
+
+    let editorDirty = false;
+    window.addEventListener('beforeunload', (e) => { if (editorDirty) e.preventDefault(); });
+
+    async function renderEditorView(slug, token) {
+      const root = $('app-root');
+      let cv = newBlankCV();
+      let savedSlug = null;          // enlace con el que está guardada (null = nueva)
+
+      if (slug) {
+        root.innerHTML = `<p style="text-align:center; padding:2rem;">Cargando editor…</p>`;
+        cv = await loadCV(slug);
+        if (token !== routeToken) return;
+        if (!cv) {
+          applyVisualSettings();
+          root.innerHTML = notFoundHTML();
+          refreshIcons();
+          return;
+        }
+        savedSlug = slug;
+      }
+
+      let activeTab = 'personal';
+      let editingIndex = -1;         // elemento de lista con el formulario abierto
+      let previewTimer = null;
+
+      document.title = `${savedSlug ? 'Editar' : 'Nueva'} hoja de vida | PMI CV Platform`;
+      root.innerHTML = `
+        <div class="editor-topbar" id="editor-topbar"></div>
+        <div class="editor-shell">
+          <nav class="editor-menu" aria-label="Apartados del editor">
+            ${EDITOR_TABS.map(tab => `
+              <button type="button" class="editor-tab-btn" data-tab="${tab.key}">
+                <i data-lucide="${tab.icon}" style="width:16px;height:16px;"></i>
+                <span>${tab.label}</span>
+              </button>
+            `).join('')}
+          </nav>
+          <section id="editor-form" class="editor-workspace"></section>
+          <aside class="editor-live-preview" aria-label="Vista previa">
+            <strong style="display:block; font-size:0.88rem; margin-bottom:0.75rem; padding-bottom:0.5rem; border-bottom:1px solid var(--border-color);">
+              <i data-lucide="eye" style="width:15px;height:15px;vertical-align:middle;"></i> Vista previa
+            </strong>
+            <div id="editor-preview" style="zoom:0.72;"></div>
+          </aside>
+        </div>
+      `;
+
+      const renderPreview = () => {
+        const preview = $('editor-preview');
+        if (!preview) return;
+        preview.innerHTML = renderCVHTML(cv, true);
+        refreshIcons();
+        generateQRCodes(preview);
+      };
+
+      /* Marca cambios sin guardar y actualiza la vista previa */
+      const touch = () => {
+        editorDirty = true;
+        const badge = $('dirty-badge');
+        if (badge) badge.style.display = '';
+        clearTimeout(previewTimer);
+        previewTimer = setTimeout(renderPreview, 250);
+      };
+
+      const renderTopbar = () => {
+        $('editor-topbar').innerHTML = `
+          <div class="editor-topbar-title">
+            <strong>${savedSlug ? `Editando: ${escapeHTML(cv.profile.full_name)}` : 'Nueva hoja de vida'}</strong>
+            <span class="badge badge-hybrid" id="dirty-badge" style="${editorDirty ? '' : 'display:none;'}">Cambios sin guardar</span>
+          </div>
+          <div class="editor-topbar-actions">
+            <button type="button" class="btn btn-secondary btn-sm" id="ed-import"><i data-lucide="upload"></i> Importar JSON</button>
+            <button type="button" class="btn btn-secondary btn-sm" id="ed-export"><i data-lucide="download"></i> Exportar JSON</button>
+            ${savedSlug ? `
+              <a href="#/cv/${encodeURIComponent(savedSlug)}" class="btn btn-secondary btn-sm"><i data-lucide="eye"></i> Ver</a>
+              <button type="button" class="btn btn-danger btn-sm" id="ed-delete"><i data-lucide="trash-2"></i> Eliminar</button>
+            ` : ''}
+            <button type="button" class="btn btn-primary btn-sm" id="ed-save"><i data-lucide="save"></i> Guardar</button>
+          </div>
+        `;
+        $('ed-import').addEventListener('click', () => $('import-file').click());
+        $('ed-export').addEventListener('click', () => openExportModal(cv));
+        $('ed-save').addEventListener('click', save);
+        $('ed-delete')?.addEventListener('click', remove);
+        refreshIcons();
+      };
+
+      async function save() {
+        const profile = cv.profile;
+        if (!profile.full_name) {
+          showToast('Escribe el nombre completo antes de guardar');
+          return;
+        }
+        profile.slug = slugify(profile.slug || profile.full_name) || `cv-${Date.now()}`;
+        try {
+          await store.save(cv, savedSlug);
+        } catch (err) {
+          showToast(`No se pudo guardar: ${err.message}`);
+          return;
+        }
+        savedSlug = profile.slug;
+        editorDirty = false;
+        history.replaceState(null, '', `#/editar/${encodeURIComponent(savedSlug)}`);
+        renderTopbar();
+        renderForm();
+        showToast(store.mode === 'supabase' ? 'Hoja de vida guardada en la base de datos' : 'Hoja de vida guardada en este navegador');
+      }
+
+      async function remove() {
+        const ok = await confirmModal('Eliminar hoja de vida', `Se eliminará la hoja de vida de ${cv.profile.full_name}. Esta acción no se puede deshacer.`, 'Eliminar', true);
+        if (!ok) return;
+        try {
+          await store.remove(savedSlug);
+        } catch (err) {
+          showToast(`No se pudo eliminar: ${err.message}`);
+          return;
+        }
+        editorDirty = false;
+        showToast('Hoja de vida eliminada');
+        window.location.hash = '#/';
+      }
+
+      /* Importar: carga el JSON en el editor; se agrega a la base de datos al pulsar Guardar */
+      $('import-file').onchange = async (e) => {
+        const file = e.target.files[0];
+        e.target.value = '';
+        if (!file) return;
+
+        let imported;
+        try {
+          const raw = parseCommentedJSON(await file.text());
+          if (!isObject(raw) || !isObject(raw.profile)) throw new Error('no contiene el apartado "profile" de una hoja de vida');
+          imported = normalizeCV(raw);
+        } catch (err) {
+          showToast(`No se pudo importar el archivo: ${err.message}`);
+          return;
+        }
+
+        if (savedSlug || editorDirty) {
+          const ok = await confirmModal('Importar JSON', 'Los datos del archivo reemplazarán todo el contenido que ves en el editor.', 'Reemplazar');
+          if (!ok) return;
+        }
+        /* Al editar una hoja de vida existente se conserva su enlace */
+        if (savedSlug) imported.profile.slug = savedSlug;
+
+        cv = imported;
+        editingIndex = -1;
+        renderForm();
+        touch();
+
+        const { local } = listMediaFiles(cv);
+        showToast(local.length
+          ? `Datos importados. Verifica que las ${local.length} imagen(es) estén en la carpeta de index.html y pulsa Guardar`
+          : 'Datos importados. Revisa y pulsa Guardar para agregarlos a la base de datos');
+      };
+
+      const moveItem = (list, index, direction) => {
+        const target = index + direction;
+        if (target < 0 || target >= list.length) return false;
+        [list[index], list[target]] = [list[target], list[index]];
+        return true;
+      };
+
+      function renderCollectionForm(area, key) {
+        const cfg = COLLECTIONS[key];
+        const list = cv[key];
+
+        area.innerHTML = `
+          <h2 style="margin-bottom:0.85rem;">${cfg.title}</h2>
+          ${list.length ? '' : `<p class="hint" style="margin-bottom:0.85rem;">Aún no hay elementos en este apartado.</p>`}
+          ${list.map((item, i) => `
+            <div class="crud-item-row">
+              <label style="display:flex; align-items:center; gap:0.6rem; min-width:0;">
+                <input type="checkbox" data-visible="${i}" ${item.is_visible !== false ? 'checked' : ''} title="Mostrar en la hoja de vida" />
+                <span>
+                  <strong data-row-title="${i}">${escapeHTML(item[cfg.main] || '(sin título)')}</strong>
+                  <span class="hint" data-row-sub="${i}">${escapeHTML(item[cfg.sub])}</span>
+                </span>
+              </label>
+              <div style="display:flex; gap:0.35rem; flex-shrink:0;">
+                <button type="button" class="btn btn-secondary btn-sm" data-edit="${i}">${editingIndex === i ? 'Cerrar' : 'Editar'}</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-move="${i}" data-dir="-1" title="Subir">↑</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-move="${i}" data-dir="1" title="Bajar">↓</button>
+                <button type="button" class="btn btn-danger btn-sm" data-delete="${i}" title="Eliminar"><i data-lucide="trash-2"></i></button>
+              </div>
+            </div>
+            ${editingIndex === i ? `<div class="item-form"><div class="form-grid">${cfg.fields.map(f => fieldHTML(f, item)).join('')}</div></div>` : ''}
+          `).join('')}
+          <button type="button" class="btn btn-primary" id="add-item" style="margin-top:0.5rem;"><i data-lucide="plus"></i> Agregar</button>
+        `;
+
+        bindFields(area, () => list[editingIndex], (field) => {
+          const item = list[editingIndex];
+          if (field === cfg.main) area.querySelector(`[data-row-title="${editingIndex}"]`).textContent = item[cfg.main] || '(sin título)';
+          if (field === cfg.sub) area.querySelector(`[data-row-sub="${editingIndex}"]`).textContent = item[cfg.sub];
+          touch();
+        });
+
+        area.querySelectorAll('[data-visible]').forEach(cb => cb.addEventListener('change', () => {
+          list[Number(cb.dataset.visible)].is_visible = cb.checked;
+          touch();
+        }));
+        area.querySelectorAll('[data-edit]').forEach(btn => btn.addEventListener('click', () => {
+          const i = Number(btn.dataset.edit);
+          editingIndex = editingIndex === i ? -1 : i;
+          renderForm();
+        }));
+        area.querySelectorAll('[data-move]').forEach(btn => btn.addEventListener('click', () => {
+          if (!moveItem(list, Number(btn.dataset.move), Number(btn.dataset.dir))) return;
+          editingIndex = -1;
+          renderForm();
+          touch();
+        }));
+        area.querySelectorAll('[data-delete]').forEach(btn => btn.addEventListener('click', () => {
+          list.splice(Number(btn.dataset.delete), 1);
+          editingIndex = -1;
+          renderForm();
+          touch();
+        }));
+        $('add-item').addEventListener('click', () => {
+          const item = { is_visible: true, ...structuredClone(cfg.defaults || {}) };
+          cfg.fields.forEach(f => { item[f.key] ??= ''; });
+          list.push(item);
+          editingIndex = list.length - 1;
+          renderForm();
+          touch();
+        });
+      }
+
+      function renderAppearanceForm(area) {
+        area.innerHTML = `
+          <h2 style="margin-bottom:1rem;">Apariencia</h2>
+          <div class="form-grid" id="settings-fields">${SETTINGS_FIELDS.map(f => fieldHTML(f, cv.settings)).join('')}</div>
+
+          <h3 style="margin:1.25rem 0 0.3rem; font-size:1rem;">Orden, títulos e íconos de las secciones</h3>
+          <p class="hint" style="margin-bottom:0.6rem;">Ícono: ${ICON_HINT.toLowerCase()}.</p>
+          ${cv.sections.map((sec, i) => `
+            <div class="crud-item-row" style="flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:0.5rem; flex:1; min-width:220px;">
+                <input type="checkbox" data-sec="${i}" data-prop="is_visible" ${sec.is_visible !== false ? 'checked' : ''} title="Mostrar u ocultar la sección" />
+                <input class="form-control" data-sec="${i}" data-prop="title" value="${escapeHTML(sec.title)}" style="flex:1; min-width:0;" aria-label="Título de la sección" />
+                <input class="form-control" data-sec="${i}" data-prop="icon" value="${escapeHTML(sec.icon)}" style="width:120px;" aria-label="Ícono de la sección" />
+              </div>
+              <div style="display:flex; gap:0.35rem; align-items:center;">
+                <label style="font-size:0.75rem;"><input type="checkbox" data-sec="${i}" data-prop="start_collapsed" ${sec.start_collapsed ? 'checked' : ''} /> Inicia plegada</label>
+                <button type="button" class="btn btn-secondary btn-sm" data-sec-move="${i}" data-dir="-1" title="Subir">↑</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-sec-move="${i}" data-dir="1" title="Bajar">↓</button>
+              </div>
+            </div>
+          `).join('')}
+        `;
+
+        bindFields($('settings-fields'), () => cv.settings, touch);
+
+        area.querySelectorAll('[data-sec]').forEach(el => el.addEventListener('input', () => {
+          cv.sections[Number(el.dataset.sec)][el.dataset.prop] = el.type === 'checkbox' ? el.checked : el.value.trim();
+          touch();
+        }));
+        area.querySelectorAll('[data-sec-move]').forEach(btn => btn.addEventListener('click', () => {
+          if (!moveItem(cv.sections, Number(btn.dataset.secMove), Number(btn.dataset.dir))) return;
+          renderForm();
+          touch();
+        }));
+      }
+
+      function renderForm() {
+        const area = $('editor-form');
+        document.querySelectorAll('.editor-tab-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.tab === activeTab));
+
+        if (activeTab === 'personal' || activeTab === 'media') {
+          const personal = activeTab === 'personal';
+          area.innerHTML = `
+            <h2 style="margin-bottom:1rem;">${personal ? 'Datos personales y perfil' : 'Video de presentación y anexos'}</h2>
+            <div class="form-grid">${(personal ? PROFILE_FIELDS : MEDIA_FIELDS).map(f => fieldHTML(f, cv.profile)).join('')}</div>
+          `;
+          bindFields(area, () => cv.profile, touch);
+        } else if (activeTab === 'appearance') {
+          renderAppearanceForm(area);
+        } else {
+          renderCollectionForm(area, activeTab);
+        }
+        refreshIcons();
+      }
+
+      document.querySelectorAll('.editor-tab-btn').forEach(btn => btn.addEventListener('click', () => {
+        activeTab = btn.dataset.tab;
+        editingIndex = -1;
+        renderForm();
+      }));
+
+      renderTopbar();
+      renderForm();
+      renderPreview();
+    }
+
+    /* ==========================================================================
+       10. ENRUTADOR (#/  ·  #/cv/{slug}  ·  #/nueva  ·  #/editar/{slug})
+       ========================================================================== */
+    async function router() {
+      const token = ++routeToken;
+      const hash = window.location.hash || '#/';
+      const slugAfter = (prefix) => decodeURIComponent(hash.slice(prefix.length).trim());
+
+      closeModal();
+      editorDirty = false;
+      window.scrollTo(0, 0);
+
+      if (hash.startsWith('#/cv/')) await renderCVView(slugAfter('#/cv/'), token);
+      else if (hash === '#/nueva') await renderEditorView(null, token);
+      else if (hash.startsWith('#/editar/')) await renderEditorView(slugAfter('#/editar/'), token);
+      else await renderDirectoryView(token);
+    }
+
+    window.addEventListener('hashchange', router);
+    refreshIcons();
+    router();
+  </script>
+</body>
+</html>
